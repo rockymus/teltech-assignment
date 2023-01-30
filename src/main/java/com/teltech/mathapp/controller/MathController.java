@@ -2,9 +2,7 @@ package com.teltech.mathapp.controller;
 
 import com.teltech.mathapp.model.MathResponse;
 import com.teltech.mathapp.service.MathService;
-import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
