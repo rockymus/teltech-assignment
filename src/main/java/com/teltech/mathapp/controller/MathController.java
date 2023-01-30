@@ -19,23 +19,23 @@ public class MathController {
     }
 
     @GetMapping("add")
-    public ResponseEntity<MathResponse> add(@RequestParam Integer x, @RequestParam Integer y) {
+    public ResponseEntity<MathResponse> add(@RequestParam Double x, @RequestParam Double y) {
         MathResponse mathResponse = mathService.calculate("add", x, y);
         return new ResponseEntity<>(mathResponse, HttpStatus.OK);
     }
 
     @GetMapping("subtract")
-    public ResponseEntity<MathResponse> subtract(@RequestParam Integer x, @RequestParam Integer y) {
+    public ResponseEntity<MathResponse> subtract(@RequestParam Double x, @RequestParam Double y) {
         return new ResponseEntity<>(mathService.calculate("subtract", x, y), HttpStatus.OK);
     }
 
     @GetMapping("multiply")
-    public ResponseEntity<MathResponse> multiply(@RequestParam Integer x, @RequestParam Integer y) {
+    public ResponseEntity<MathResponse> multiply(@RequestParam Double x, @RequestParam Double y) {
         return new ResponseEntity<>(mathService.calculate("multiply", x, y), HttpStatus.OK);
     }
 
     @GetMapping("divide")
-    public ResponseEntity<MathResponse> divide(@RequestParam Integer x, @RequestParam Integer y) {
+    public ResponseEntity<MathResponse> divide(@RequestParam Double x, @RequestParam Double y) {
         return new ResponseEntity<>(mathService.calculate("divide", x, y), HttpStatus.OK);
     }
 

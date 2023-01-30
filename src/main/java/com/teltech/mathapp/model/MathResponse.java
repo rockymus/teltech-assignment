@@ -4,17 +4,18 @@ import java.io.Serializable;
 
 public class MathResponse implements Serializable {
     private String action;
-    private Integer x;
-    private Integer y;
-    private Integer answer;
+    private String x;
+    private String y;
+    private String answer;
     private boolean cached;
 
-    public MathResponse(String action, Integer x, Integer y, Integer answer) {
+    public MathResponse(String action, Double x, Double y, Double answer) {
         this.action = action;
-        this.x = x;
-        this.y = y;
-        this.answer = answer;
+        this.x = convertValueToString(x);
+        this.y = convertValueToString(y);
+        this.answer = convertValueToString(answer);
         this.cached = false;
+
     }
 
     public MathResponse(MathResponse mathResponse) {
@@ -33,27 +34,27 @@ public class MathResponse implements Serializable {
         this.action = action;
     }
 
-    public Integer getX() {
+    public String getX() {
         return x;
     }
 
-    public void setX(Integer x) {
+    public void setX(String x) {
         this.x = x;
     }
 
-    public Integer getY() {
+    public String getY() {
         return y;
     }
 
-    public void setY(Integer y) {
+    public void setY(String y) {
         this.y = y;
     }
 
-    public Integer getAnswer() {
+    public String getAnswer() {
         return answer;
     }
 
-    public void setAnswer(Integer answer) {
+    public void setAnswer(String answer) {
         this.answer = answer;
     }
 
@@ -63,5 +64,12 @@ public class MathResponse implements Serializable {
 
     public void setCached(boolean cached) {
         this.cached = cached;
+    }
+
+    private String convertValueToString(Double value) {
+        if (value % 1 == 0) {
+            return String.format("%d", value.longValue());
+        }
+        return Double.toString(value);
     }
 }
