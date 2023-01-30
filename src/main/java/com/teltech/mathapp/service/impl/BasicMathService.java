@@ -21,6 +21,9 @@ public class BasicMathService implements MathService {
 
     @Override
     public MathResponse calculate(String operation, Integer x, Integer y) {
+        if (x == null || y == null) {
+            throw new IllegalArgumentException("Both values must not be null.");
+        }
         String id = x + operation + y;
         var obj = cache.get(id);
         if (obj != null) {
