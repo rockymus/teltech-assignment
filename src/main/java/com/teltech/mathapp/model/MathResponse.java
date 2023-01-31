@@ -1,6 +1,8 @@
 package com.teltech.mathapp.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class MathResponse implements Serializable {
     private String action;
@@ -68,8 +70,8 @@ public class MathResponse implements Serializable {
 
     private String convertValueToString(Double value) {
         if (value % 1 == 0) {
-            return String.format("%d", value.longValue());
+            return new BigDecimal(value).setScale(0, RoundingMode.HALF_UP).toString();
         }
-        return Double.toString(value);
+        return new BigDecimal(value).toString();
     }
 }

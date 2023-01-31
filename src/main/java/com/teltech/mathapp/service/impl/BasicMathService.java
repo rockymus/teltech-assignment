@@ -21,6 +21,8 @@ public class BasicMathService implements MathService {
 
     @Override
     public MathResponse calculate(String operation, Double x, Double y) {
+        validate(x, "Parameter x is out of bounds.");
+        validate(y, "Parameter y is out of bounds.");
         String id = x + operation + y;
         var obj = cache.get(id);
         if (obj != null) {
@@ -31,11 +33,18 @@ public class BasicMathService implements MathService {
             return response;
         } else {
             MathOperation mathOperation = factory.create(operation);
-            MathResponse mathResponse = new MathResponse(operation, x, y, mathOperation.calculate(x, y));
+            Double result = mathOperation.calculate(x, y);
+            validate(result, "Result is out of bounds.");
+            MathResponse mathResponse = new MathResponse(operation, x, y, result);
             cache.put(id,mathResponse);
             return mathResponse;
         }
+    }
 
+    private void validate(Double number, String message) {
+        if (number.isNaN() || number.isInfinite()) {
+            throw new ArithmeticException(message);
+        }
     }
 
 }
