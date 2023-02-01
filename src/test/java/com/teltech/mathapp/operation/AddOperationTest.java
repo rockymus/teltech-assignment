@@ -10,27 +10,26 @@ class AddOperationTest {
 
     @Test
     void positiveValues() {
-        //assertEquals(Double.valueOf(7), operation.calculate(4, 3));
-        //assertEquals(Double.valueOf(25), operation.calculate(13, 12));
+        assertEquals(Double.valueOf(7), operation.calculate(4D, 3D));
+        assertEquals(Double.valueOf(25), operation.calculate(13D, 12D));
     }
 
     @Test
     void negativeValues() {
-        //assertEquals(Double.valueOf(-32), operation.calculate(-53, 21));
-        //assertEquals(Double.valueOf(-10), operation.calculate(-7, -3));
+        assertEquals(Double.valueOf(-32), operation.calculate(-53D, 21D));
+        assertEquals(Double.valueOf(-10), operation.calculate(-7D, -3D));
     }
 
     @Test
     void zeroValues() {
-        //assertEquals(Double.valueOf(3), operation.calculate(0, 3));
-        //assertEquals(Double.valueOf(5), operation.calculate(5, 0));
-        //assertEquals(Double.valueOf(0), operation.calculate(0, 0));
+        assertEquals(Double.valueOf(3), operation.calculate(0D, 3D));
+        assertEquals(Double.valueOf(5), operation.calculate(5D, 0D));
+        assertEquals(Double.valueOf(0), operation.calculate(0D, 0D));
     }
 
     @Test
-    void nullValues() {
-        //assertThrows(NullPointerException.class, () ->operation.calculate(null, 23));
-        //assertThrows(NullPointerException.class, () -> operation.calculate(3, null));
-        //assertThrows(NullPointerException.class, () ->  operation.calculate(null, null));
+    void minMaxValues() {
+        assertTrue(operation.calculate(Double.MAX_VALUE, Double.MAX_VALUE).isInfinite());
+        assertTrue(operation.calculate(-Double.MAX_VALUE, -Double.MAX_VALUE).isInfinite());
     }
 }
